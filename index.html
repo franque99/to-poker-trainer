@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>tztreiner - GTO MTT Trainer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>tztreiner - Treinador GTO de MTTs</h1>
+    <nav>
+      <ul>
+        <li><a href="#drills">Drills</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#analise">Análise</a></li>
+        <li><a href="#simulador">Push/Fold</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="drills">
+    <h2>📌 Drills Interativos</h2>
+    <p>Pratique spots específicos com ranges otimizados.</p>
+  </section>
+
+  <section id="quiz">
+    <h2>🧠 Quiz GTO</h2>
+    <p>Responda situações estratégicas e veja se bate com a teoria.</p>
+  </section>
+
+  <section id="analise">
+    <h2>🔍 Análise de Mãos</h2>
+    <p>Envie suas mãos e receba sugestões com base no GTO.</p>
+  </section>
+
+  <section id="simulador">
+    <h2>🧮 Simulador Push/Fold</h2>
+    <label for="posicao">Posição:</label>
+    <select id="posicao">
+      <option value="SB">SB</option>
+      <option value="BTN">BTN</option>
+      <option value="CO">CO</option>
+      <option value="HJ">HJ</option>
+      <option value="MP">MP</option>
+      <option value="UTG">UTG</option>
+    </select>
+
+    <label for="stack">Stack Efetivo (bb):</label>
+    <select id="stack">
+      <option value="10">10bb</option>
+      <option value="15">15bb</option>
+    </select>
+
+    <button onclick="mostrarRange()">Calcular Range</button>
+
+    <div id="resultado" style="margin-top: 20px;">
+      <strong>Range GTO estimado:</strong>
+      <div id="grade-range" class="grade"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 tztreiner</p>
+  </footer>
+
+  <script>
+    const todasAsMaos = [
+      "AA","AKs","AQs","AJs","ATs","A9s","A8s","A7s","A6s","A5s","A4s","A3s","A2s",
+      "AKo","KK","KQs","KJs","KTs","K9s","K8s","K7s","K6s","K5s","K4s","K3s","K2s",
+      "AQo","KQo","QQ","QJs","QTs","Q9s","Q8s","Q7s","Q6s","Q5s","Q4s","Q3s","Q2s",
+      "AJo","KJo","QJo","JJ","JTs","J9s","J8s","J7s","J6s","J5s","J4s","J3s","J2s",
+      "ATo","KTo","QTo","JTo","TT","T9s","T8s","T7s","T6s","T5s","T4s","T3s","T2s",
+      "99","98s","97s","96s","95s","94s","93s","92s",
+      "88","87s","86s","85s","84s","83s","82s",
+      "77","76s","75s","74s","73s","72s",
+      "66","65s","64s","63s","62s",
+      "55","54s","53s","52s",
+      "44","43s","42s",
+      "33","32s",
+      "22"
+    ];
+
+    const ranges = {
+      "SB-10": ["A2s","K2s","Q5s","J8s","T8s","98s","A8o","K9o","22"],
+      "BTN-10": ["A2s","K5s","Q8s","J9s","T9s","A9o","KTo","22"],
+      "CO-10": ["A5s","K9s","Q9s","JTs","66","ATo","KQo"],
+      "SB-15": ["A2s","K2s","Q4s","J7s","T8s","87s","A9o","KTo"]
+    };
+
+    function mostrarRange() {
+      const posicao = document.getElementById("posicao").value;
+      const stack = document.getElementById("stack").value;
+      const chave = `${posicao}-${stack}`;
+      const grade = document.getElementById("grade-range");
+      const range = ranges[chave] || [];
+
+      grade.innerHTML = "";
+      todasAsMaos.forEach(mao => {
+        const div = document.createElement("div");
+        div.textContent = mao;
+        if (range.includes(mao)) div.classList.add("ativo");
+        grade.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
