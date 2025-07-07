@@ -14,6 +14,7 @@
         <li><a href="#quiz">Quiz</a></li>
         <li><a href="#analise">Análise</a></li>
         <li><a href="#simulador">Push/Fold</a></li>
+        <li><a href="#gto-analyzer">GTO Básico</a></li>
       </ul>
     </nav>
   </header>
@@ -59,6 +60,37 @@
     </div>
   </section>
 
+  <section id="gto-analyzer">
+    <h2>📊 Análise GTO Básica</h2>
+    <label for="posicaoAnalise">Posição:</label>
+    <select id="posicaoAnalise">
+      <option value="UTG">UTG</option>
+      <option value="MP">MP</option>
+      <option value="HJ">HJ</option>
+      <option value="CO">CO</option>
+      <option value="BTN">BTN</option>
+      <option value="SB">SB</option>
+      <option value="BB">BB</option>
+    </select>
+
+    <label for="stackAnalise">Stack (bb):</label>
+    <input type="number" id="stackAnalise" min="1" max="100" placeholder="Ex: 15">
+
+    <label for="maoAnalise">Mão inicial (ex: AJo):</label>
+    <input type="text" id="maoAnalise" placeholder="AJo, 55, K9s...">
+
+    <label for="acaoAnalise">Ação:</label>
+    <select id="acaoAnalise">
+      <option value="fold">Fold</option>
+      <option value="call">Call</option>
+      <option value="raise">Raise</option>
+      <option value="allin">All-in</option>
+    </select>
+
+    <button onclick="analisarGTO()">Analisar Jogada</button>
+    <div id="respostaGTO" style="margin-top: 20px;"></div>
+  </section>
+
   <footer>
     <p>&copy; 2025 tztreiner</p>
   </footer>
@@ -101,6 +133,42 @@
         if (range.includes(mao)) div.classList.add("ativo");
         grade.appendChild(div);
       });
+    }
+
+    function analisarGTO() {
+      const pos = document.getElementById("posicaoAnalise").value;
+      const stack = parseInt(document.getElementById("stackAnalise").value);
+      const mao = document.getElementById("maoAnalise").value.toUpperCase().replace(/\s/g, '');
+      const acao = document.getElementById("acaoAnalise").value;
+      const output = document.getElementById("respostaGTO");
+
+      const ranges10bb = {
+        "BTN": ["22","33","A2s","A9o","K9s","QTs","AJo","KQo","JTo","ATs"],
+        "SB":  ["22","A2s","K2s","Q5s","A8o","K9o","J8s","98s"]
+      };
+
+      let range = ranges10bb[pos] || [];
+      let feedback = "";
+
+      if (stack <= 10) {
+        if (range.includes(mao)) {
+          if (acao === "allin") {
+            feedback = "✅ All-in GTO aprovado com essa mão nesse spot.";
+          } else {
+            feedback = "⚠️ Essa mão é boa pra shovar, mas sua ação pode ser subótima.";
+          }
+        } else {
+          if (acao === "allin") {
+            feedback = "❌ Mão fora do range GTO para all-in com esse stack e posição.";
+          } else {
+            feedback = "👍 Essa mão provavelmente não é forte o suficiente para all-in.";
+          }
+        }
+      } else {
+        feedback = "ℹ️ Só temos modelo GTO simulado para ≤10bb por enquanto.";
+      }
+
+      output.innerHTML = `<p>${feedback}</p>`;
     }
   </script>
 </body>
