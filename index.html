@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>tztreiner - GTO MTT Trainer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -41,9 +41,6 @@
       <option value="SB">SB</option>
       <option value="BTN">BTN</option>
       <option value="CO">CO</option>
-      <option value="HJ">HJ</option>
-      <option value="MP">MP</option>
-      <option value="UTG">UTG</option>
     </select>
 
     <label for="stack">Stack Efetivo (bb):</label>
@@ -64,20 +61,16 @@
     <h2>📊 Análise GTO Básica</h2>
     <label for="posicaoAnalise">Posição:</label>
     <select id="posicaoAnalise">
-      <option value="UTG">UTG</option>
-      <option value="MP">MP</option>
-      <option value="HJ">HJ</option>
-      <option value="CO">CO</option>
-      <option value="BTN">BTN</option>
       <option value="SB">SB</option>
-      <option value="BB">BB</option>
+      <option value="BTN">BTN</option>
+      <option value="CO">CO</option>
     </select>
 
     <label for="stackAnalise">Stack (bb):</label>
-    <input type="number" id="stackAnalise" min="1" max="100" placeholder="Ex: 15">
+    <input type="number" id="stackAnalise" placeholder="Ex: 10" />
 
-    <label for="maoAnalise">Mão inicial (ex: AJo):</label>
-    <input type="text" id="maoAnalise" placeholder="AJo, 55, K9s...">
+    <label for="maoAnalise">Mão inicial:</label>
+    <input type="text" id="maoAnalise" placeholder="Ex: AJo, 55, K9s..." />
 
     <label for="acaoAnalise">Ação:</label>
     <select id="acaoAnalise">
@@ -144,7 +137,8 @@
 
       const ranges10bb = {
         "BTN": ["22","33","A2s","A9o","K9s","QTs","AJo","KQo","JTo","ATs"],
-        "SB":  ["22","A2s","K2s","Q5s","A8o","K9o","J8s","98s"]
+        "SB":  ["22","A2s","K2s","Q5s","A8o","K9o","J8s","98s"],
+        "CO":  ["A5s","K9s","Q9s","JTs","66","ATo","KQo"]
       };
 
       let range = ranges10bb[pos] || [];
@@ -152,17 +146,13 @@
 
       if (stack <= 10) {
         if (range.includes(mao)) {
-          if (acao === "allin") {
-            feedback = "✅ All-in GTO aprovado com essa mão nesse spot.";
-          } else {
-            feedback = "⚠️ Essa mão é boa pra shovar, mas sua ação pode ser subótima.";
-          }
+          feedback = (acao === "allin")
+            ? "✅ All-in GTO aprovado com essa mão nesse spot."
+            : "⚠️ Essa mão é boa pra shovar, mas sua ação pode ser subótima.";
         } else {
-          if (acao === "allin") {
-            feedback = "❌ Mão fora do range GTO para all-in com esse stack e posição.";
-          } else {
-            feedback = "👍 Essa mão provavelmente não é forte o suficiente para all-in.";
-          }
+          feedback = (acao === "allin")
+            ? "❌ Mão fora do range GTO para all-in com esse stack e posição."
+            : "👍 Essa mão provavelmente não é forte o suficiente para all-in.";
         }
       } else {
         feedback = "ℹ️ Só temos modelo GTO simulado para ≤10bb por enquanto.";
