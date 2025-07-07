@@ -35,6 +35,26 @@ section {
   padding: 40px;
   border-bottom: 1px solid #333;
 }
+#gto-analyzer input,
+#gto-analyzer select,
+#gto-analyzer button {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 200px;
+}
+
+#gto-analyzer button {
+  background: #00ccff;
+  color: #000;
+  cursor: pointer;
+}
+
+#gto-analyzer button:hover {
+  background: #0099cc;
+}
 
 footer {
   text-align: center;
