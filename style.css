@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #1a1a1a;
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #f2f2f2;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #00ccff;
+}
+
+section {
+  padding: 40px;
+  border-bottom: 1px solid #333;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1a1a1a;
+  color: #888;
+}
+
+#simulador select,
+#simulador button {
+  margin: 10px 5px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+
+#simulador button {
+  background-color: #00ccff;
+  color: #000;
+  cursor: pointer;
+}
+
+#simulador button:hover {
+  background-color: #0099cc;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(13, 30px);
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.grade div {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 13px;
+  border-radius: 4px;
+  background-color: #222;
+  color: #ccc;
+  font-weight: bold;
+}
+
+.grade .ativo {
+  background-color: #00cc66;
+  color: #000;
+}
