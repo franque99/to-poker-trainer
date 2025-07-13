@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modo Treino - GTO Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html">Quiz</a>
+    <a href="study.html">Estudo</a>
+    <a href="ranges.html">Ranges</a>
+    <a href="train.html" class="active">Treino</a>
+  </nav>
+
+  <main class="table-layout">
+    <h1>Modo Treino GTO – Visual</h1>
+
+    <div class="selectors">
+      <label for="hero">Hero:</label>
+      <select id="hero">
+        <option value="btn">BTN</option>
+      </select>
+
+      <label for="villain">Vilão:</label>
+      <select id="villain">
+        <option value="bb">BB</option>
+      </select>
+
+      <label for="street">Street:</label>
+      <select id="street">
+        <option value="preflop">Pré-Flop</option>
+        <option value="flop">Flop</option>
+        <option value="turn">Turn</option>
+        <option value="river">River</option>
+      </select>
+
+      <button onclick="loadRange()">Carregar</button>
+    </div>
+
+    <h2 id="range-title">Selecione posições e street</h2>
+    <div class="poker-table">
+      <div id="range-grid" class="range-grid"></div>
+    </div>
+
+    <div class="legend">
+      <div><span class="cell raise"></span> Raise</div>
+      <div><span class="cell call"></span> Call</div>
+      <div><span class="cell fold"></span> Fold</div>
+    </div>
+  </main>
+
+  <script src="scripts/train.js"></script>
+</body>
+</html>
