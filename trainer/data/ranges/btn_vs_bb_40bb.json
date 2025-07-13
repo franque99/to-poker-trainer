@@ -1,0 +1,68 @@
+{
+  "preflop": {
+    "AA": {
+      "raise": 1.0
+    },
+    "KK": {
+      "raise": 1.0
+    },
+    "QQ": {
+      "raise": 1.0
+    },
+    "AKs": {
+      "raise": 1.0
+    },
+    "AQs": {
+      "raise": 0.7,
+      "call": 0.3
+    },
+    "AJs": {
+      "call": 1.0
+    },
+    "KQs": {
+      "call": 0.6,
+      "fold": 0.4
+    },
+    "QJs": {
+      "fold": 1.0
+    }
+  },
+  "flop": {
+    "AA": {
+      "raise": 0.8,
+      "call": 0.2
+    },
+    "KK": {
+      "raise": 0.5,
+      "call": 0.5
+    },
+    "QQ": {
+      "call": 1.0
+    },
+    "AKs": {
+      "raise": 0.6,
+      "call": 0.4
+    },
+    "AQs": {
+      "call": 1.0
+    }
+  },
+  "turn": {
+    "AA": {
+      "call": 1.0
+    },
+    "AKs": {
+      "raise": 0.3,
+      "call": 0.7
+    }
+  },
+  "river": {
+    "AA": {
+      "raise": 0.5,
+      "call": 0.5
+    },
+    "QQ": {
+      "fold": 1.0
+    }
+  }
+}
